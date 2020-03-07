@@ -1,0 +1,10 @@
+#footer {
+    position: fixed;
+    height: 40px; 
+    width: 100%; 
+    float: left;
+    bottom: 0px; 
+    background-color: gainsboro;
+    text-align: center;
+    font-size: small;
+}

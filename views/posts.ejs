@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/arrow.js"></script>
+    <script src="/js/parameter.js"></script>
+    <script src="/js/animation.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/left.js"></script>
+    <script src="/js/message.js"></script>
+    <script src="/js/tcp_ip.js"></script>
+    <script src="/js/syn_real_ip.js"></script>
+    <script src="/js/syn_virtual_ip.js"></script>
+    <script src="/js/smurf_1.js"></script>
+    <script src="/js/ddos_real_ip.js"></script>
+    <script src="/js/ddos_virtual_ip.js"></script>
+    <!-- <script src="./JS/tcp_ip_back.js"></script> -->
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/left.css" />
+    <link rel="stylesheet" href="/css/right.css" />
+    <title>网络攻击方式课程</title>
+    <style type="text/css">
+        input {
+            float: left;
+            margin-top: 2px;
+        }
+
+        label {
+            margin-left: 5px;
+            margin-top: 2px;
+        }
+        #select_title,
+        #options {
+            position: absolute;
+            background-color: whitesmoke;
+            border: solid 1px #c3c3c3;
+            font-size: 16px;
+            left: 580px;
+        }
+
+        #select_title {
+           
+            width: 120px;
+            height: 30px;
+            top: 0px;
+        }
+
+        #options {
+            width: 120px;
+            height: 100px;
+            top: 30px;
+            font-size: 14px;
+
+            text-align: left;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶栏 -->
+    <div id="header">
+        <img id="logo" src="/img/logo.png" height="30px" style="float: left; margin-left: 20px;" />
+        <ul id="menu">
+            <li><a class='item' href="#">首页</a></li>
+            <li><a href="/signout">登出</a></li>
+        </ul>
+    </div>
+
+    <!-- 左侧 -->
+    <div id="left-bar">
+        <div id="menu-course">
+            <div class="header">攻击方式</div>
+            <div class="nav">
+                <ul>
+                    <li class="list">
+                        <h2 onmousemove="left.select(this)" onmouseout="left.cancel_select(this)"><i></i><embed
+                                src="img/suggestion.svg" width="25" type="image/svg+xml" /> TCP/IP</h2>
+                        <div class="hide">
+                            <h5 id="tcp_ip">TCP/IP</h5>
+                        </div>
+                    </li>
+                    <li class="list">
+                        <h2 onmousemove="left.select(this)" onmouseout="left.cancel_select(this)"><i></i><embed
+                                src="img/suggestion.svg" width="25" type="image/svg+xml" /> SYN攻击</h2>
+                        <div class="hide">
+                            <h5 id="syn_real_ip">使用真实IP攻击</h5>
+                            <h5 id="syn_virtual_ip">使用虚拟IP攻击</h5>
+                        </div>
+                    </li>
+                    <li class="list">
+                        <h2 onmousemove="left.select(this)" onmouseout="left.cancel_select(this)"><i></i><embed
+                                src="img/suggestion.svg" width="25" type="image/svg+xml" /> Smurf攻击</h2>
+                        <div class="hide">
+                            <h5 id="smurf_1">同一网段</h5>
+                            <h5 id="smurf_2">不同网段</h5>
+                        </div>
+                    </li>
+                    <li class="list">
+                        <h2 onmousemove="left.select(this)" onmouseout="left.cancel_select(this)"><i></i><embed
+                                src="img/suggestion.svg" width="25" type="image/svg+xml" /> DDos攻击</h2>
+                        <div class="hide">
+                            <h5 id="ddos_real_ip">DDos真实IP攻击</h5>
+                            <h5 id="ddos_virtual_ip">DDos虚拟IP攻击</h5>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 中部动画区域 -->
+    <div id="center">
+        <div id="level0_div">
+            <canvas class="mycanvas" id="level0" width="700" height="450"></canvas>
+            <canvas class="mycanvas" id="level1" width="700" height="450"></canvas>
+            <div id="info"></div>
+            <div id="queue">
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+            </div>
+            <div id="queue2">
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+                <div class="synbean"></div>
+            </div>
+            <div id="select_title">防御措施选择</div>
+            <div id="options">
+                <form>
+                    <div>
+                        <label>增加带宽</label>
+                        <input name="radio1" type="radio" id='option1'>
+                    </div>
+                    <div>
+                        <label>增加内存</label>
+                        <input name="radio1" type="radio" id='option2'>
+                    </div>
+                    <div>
+                        <label>ip探测(黑名单)</label>
+                        <input name="radio1" type="radio" id='option3'>
+                    </div>
+                    <div>
+                        <label>随机丢弃</label>
+                        <input name="radio1" type="radio" id='option4'>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <button class="btn" id="start" type="button">开始</button>
+        <button class="btn" id="restart" type="button">重播</button>
+    </div>
+
+    <!-- 右侧服务器状态栏 -->
+    <div id="right-bar">
+        <div id="server-status">
+            <div id="right_title">服务器状态栏</div>
+            <canvas id="right" width="300" height="480"></canvas>
+            <canvas id="right2" width="300" height="480"></canvas>
+            <canvas id="right3" width="300" height="480"></canvas>
+        </div>
+    </div>
+
+    <!-- 底部版权和超链 -->
+    <!-- <div id="footer">
+        友情链接：
+        <a href="http://cqu.edu.cn">重庆大学 |</a>
+        <a href="http://jwc.cqu.edu.cn">教务处</a>
+        <br />
+        Copyright 2019 重庆大学
+    </div> -->
+
+    <script src="js/message.js"></script>
+    <script>
+        $('#select_title').click(function () {
+            $('input[type=radio][name="radio1"]:checked').prop("checked", false);
+            $("#options").slideDown();
+        });
+
+        //  $('#options').mouseleave(function () {
+        //     $("form input").each(function () {//循环绑定事件
+        //         if (this.checked) {
+        //             sessionStorage.setItem("option",this.id);
+        //         //     if (this.id == 'option1') {
+        //         //         //增加带宽的动画
+                        
+        //         //    }
+        //         //     if (this.id == 'option2') {
+        //         //         //增加内存的动画
+        //         //         console.log(111);
+        //         //     }
+        //         //     if (this.id == 'option3') {
+        //         //         //ip检测--加入黑名单的动画
+        //         //         console.log(111);
+        //         //     }
+        //         //     if (this.id == 'option4') {
+        //         //         //随机丢弃的动画
+        //         //         console.log(111);
+        //         //     }
+        //         }
+        //     });
+        //     $("#options").slideUp();
+        // });
+     
+        var old = null; //用来保存原来的对象
+        $("form input").each(function () {//循环绑定事件
+            if (this.checked) {
+                old = this; //如果当前对象选中，保存该对象
+            }
+            this.onclick = function () {
+                if (this == old) {//如果点击的对象原来是选中的，取消选中
+                    this.checked = false;
+                    old = null;
+                } else {
+                    old = this;
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

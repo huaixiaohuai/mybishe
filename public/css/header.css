@@ -1,0 +1,34 @@
+#header {
+    position: relative;
+    top: 0px;
+    border-bottom: 1px solid gainsboro;
+    height: 40px;
+    width: 100%;
+    box-shadow: 2px 2px 3px gainsboro;
+    /*color:rgb(10, 146, 191);*/
+}
+
+#menu > li {
+    display: block;
+    float: left;
+    color:black;
+    /*color: rgb(10, 146, 191);*/
+    font-size: 18px;
+    height: 40px;
+    margin-left: 50px;
+}
+
+#menu > li > a:link {
+    text-decoration: none;
+    color:black;
+    /*color:rgb(10, 146, 191);*/
+    height: 40px;
+}
+
+#menu > li > a:hover {
+    color:rgb(10, 146, 191);
+}
+
+#menu > li > a:active {
+    text-decoration:blink
+}
