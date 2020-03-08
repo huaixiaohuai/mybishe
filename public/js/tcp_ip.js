@@ -163,8 +163,8 @@ tcp.initCanvas = function () {
     ctx.clearRect(0, 0, ctx.width, ctx.height);
     let user = new Image();
     let server = new Image();
-    user.src = "./img/computer.png";
-    server.src = "./img/server.png";
+    user.src = "/img/computer.png";
+    server.src = "/img/server.png";
     user.onload = function () {
         ctx.drawImage(user, 50, 175, 100, 100);
     };

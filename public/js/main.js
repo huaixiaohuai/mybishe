@@ -1,7 +1,7 @@
 $(function () {
     mes.main();
     $('#select_title').hide();
-    ddos_v.main();
+    tcp.main();
     // 每个动画开始之前都应该对其他动画进行一次完全清除
     $('#tcp_ip').click(function () {
 

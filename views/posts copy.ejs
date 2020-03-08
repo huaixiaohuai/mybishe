@@ -19,17 +19,17 @@
     <script src="/js/smurf_1.js"></script>
     <script src="/js/ddos_real_ip.js"></script>
     <script src="/js/ddos_virtual_ip.js"></script>
-    <script src="/layui.js"></script>
-   
+    <script src="/js/layui.js"></script>
+    <!-- <script src="./JS/tcp_ip_back.js"></script> -->
     <link rel="stylesheet" href="/css/layui.css" />
-    <link rel="stylesheet" href="/css/main.css" />
+    <!-- <link rel="stylesheet" href="/css/main.css" /> -->
     <!-- <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" /> -->
     <!-- <link rel="stylesheet" href="/css/left.css" /> -->
-    <link rel="stylesheet" href="/css/right.css" />
+    <!-- <link rel="stylesheet" href="/css/right.css" /> -->
 
     <title>网络攻击方式课程</title>
-    <style type="text/css">
+    <!-- <style type="text/css">
         input {
             float: left;
             margin-top: 2px;
@@ -65,61 +65,50 @@
             text-align: left;
             display: none;
         }
-    </style>
+    </style> -->
 </head>
 
 <body class="layui-layout-body">
     <div class="layui-layout layui-layout-admin">
 
         <!-- 顶栏 -->
-        <div class="layui-header" >
-            <div class="layui-logo">Dos虚拟攻击仿真平台</div>
+        <div class="layui-header">
+            <div class="layui-logo">虚拟攻击仿真平台</div>
             <!-- 头部区域（可配合layui已有的水平导航） -->
             <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item" style="color:white"><a href="/signout">注销登陆</a></li>
+                <li class="layui-nav-item"><a href="">登出</a></li>
             </ul>
-            <ul class="layui-nav layui-layout-left">
-                <li class="layui-nav-item">
-                  <a href="javascript:;">防御措施</a>
-                  <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                  </dl>
-                </li>
-              </ul>
-              
         </div>
 
         <!-- 左侧 -->
-        <div class="layui-side layui-side-menu layui-bg-black">
+        <div class="layui-side layui-bg-black">
             <div class="layui-side-scroll">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="test">
                     <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;">TCP/IP</a>
                         <dl class="layui-nav-child">
-                            <dd><a id="tcp_ip" style="padding-left: 35px;">TCP/IP</a></dd>
+                            <dd><a id="tcp_ip">TCP/IP</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
                         <a href="javascript:;">SYN攻击</a>
                         <dl class="layui-nav-child">
-                            <dd><a id="syn_real_ip" style="padding-left: 35px;">使用真实IP攻击</a></dd>
-                            <dd><a id="syn_virtual_ip" style="padding-left: 35px;">使用虚拟IP攻击</a></dd>
+                            <dd><a id="syn_real_ip">使用真实IP攻击</a></dd>
+                            <dd><a id="syn_virtual_ip">使用虚拟IP攻击</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;">Smurf攻击</a>
+                        <a href="javascript:;">smurf攻击</a>
                         <dl class="layui-nav-child">
-                            <dd><a id="smurf_1" style="padding-left: 35px;">同一网段</a></dd>
+                            <dd><a id="smurf_1">同一网段</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
                         <a href="javascript:;">DDos攻击</a>
                         <dl class="layui-nav-child">
-                            <dd><a id="ddos_real_ip" style="padding-left: 35px;">DDos真实IP攻击</a></dd>
-                            <dd><a id="ddos_virtual_ip" style="padding-left: 35px;">DDos虚拟IP攻击</a></dd>
+                            <dd><a id="ddos_real_ip">DDos真实IP攻击</a></dd>
+                            <dd><a id="ddos_virtual_ip">DDos虚拟IP攻击</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -127,11 +116,11 @@
         </div>
 
         <!-- 中部动画区域 -->
-        <div class="layui-body" style="bottom:0px;background-color:#f0f2f5">
+        <div class="layui-body">
             <!-- 内容主体区域 -->
-            <div style="padding-left:10px;padding-top:8px">
+            <div style="padding: 15px;">
                 <div id="center">
-                    <div id="level0_div"  style="background-color:white;height:450px">
+                    <div id="level0_div">
                         <canvas class="mycanvas" id="level0" width="700" height="450"></canvas>
                         <canvas class="mycanvas" id="level1" width="700" height="450"></canvas>
                         <div id="info"></div>
@@ -209,7 +198,7 @@
 
         });
     </script>
-    <script>
+    <!-- <script>
         $('#select_title').click(function () {
             $('input[type=radio][name="radio1"]:checked').prop("checked", false);
             $("#options").slideDown();
@@ -228,7 +217,7 @@
                 }
             }
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

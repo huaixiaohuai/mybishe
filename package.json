@@ -18,6 +18,7 @@
     "express-formidable": "^1.2.0",
     "express-session": "^1.17.0",
     "express-winston": "^4.0.3",
+    "layui-src": "^2.5.5",
     "marked": "^0.8.0",
     "moment": "^2.24.0",
     "mongolass": "^4.4.6",

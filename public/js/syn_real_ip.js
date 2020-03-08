@@ -400,6 +400,7 @@ syn_r.send_package = function () {
             $(".load").show();
             mes.draw_n_rect(30,100, 0,0);
             mes.set_IP('500');
+            mes.draw_n_rect(30,100, 0,500);
             mes.play(0,6,0, 1,0, 1,0, 1,0, 1);
             mes.run_pointer(1,2);
             syn_r.defendAnimation();

@@ -153,7 +153,7 @@ syn_v.initCanvas = function () {
     $(ack2_3).appendTo('#level0_div');
 
     //初始化提示语
-    let prompt = '<div class="prompt">开始分身</div>';
+    let prompt = '<div class="prompt">虚拟IP</div>';
     $(prompt).appendTo('#level0_div');
     $('.prompt').hide();
     $('.prompt').css({

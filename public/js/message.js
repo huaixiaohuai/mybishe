@@ -8,34 +8,47 @@
 var mes = mes || {};
 
 mes.main = function () {
-    mes.d = document.getElementById("right");
-    mes.e = document.getElementById("right2");
-    mes.e2 = document.getElementById("right3");
-    ctx2 = mes.d.getContext("2d");
-    ctx3 = mes.e.getContext("2d");
-    ctx4 = mes.e2.getContext("2d");
+    ctx2 = document.getElementById("right").getContext("2d");
+    ctx3 = document.getElementById("right2").getContext("2d");
+    ctx4 = document.getElementById("right3").getContext("2d");
+
     ctx3.fillStyle = "rgb(11,121,157)";
     ctx3.font = "18px serif";
     ctx3.fillText("0", 50, 140);
     ctx3.fillText("10GBps", 230, 140);
+
     ctx4.font = ' 18px Arial';
     ctx4.strokeStyle = "#0b799d";
     ctx4.fillStyle = "rgb(11,121,157)";
     ctx4.fillText("带宽占用量", 130, 150);
     ctx4.strokeRect(4, 162, 154, 30);
     ctx4.fillText("内存占用:", 160, 187);
-    ctx4.strokeRect(4, 205, 154, 30);
-    ctx4.fillText("黑名单占比:", 160, 227);
-    // ctx4.strokeRect(4,258,150,30);
-    ctx4.fillText("连接IP数:", 160, 260);
+    //ctx4.strokeRect(4, 205, 154, 30);
+    
+    let ip_icon = new Image();
+    ip_icon.src = '/img/laptop.png';
+    ip_icon.onload = function () {
+        ctx4.drawImage(ip_icon, 4, 205, 31, 27);
+        ctx4.drawImage(ip_icon, 35, 205, 31, 27);
+        ctx4.drawImage(ip_icon, 65, 205, 31, 27);
+        ctx4.drawImage(ip_icon, 95, 205, 31, 27);
+        ctx4.drawImage(ip_icon, 125, 205, 31, 27);
+        //ctx4.drawImage(ip_icon, 150, 205, 25, 28);
+    };
+
+    
+   
+    ctx4.fillText("连接IP数:", 160, 227);
+   
     ctx4.fillText("高访问网段图表", 7, 284);
+
+
     var statistical = new Image();
     statistical.src = "./img/statistical.png";
     statistical.onload = function () {
         ctx2.drawImage(statistical, 0, 290, 300, 180);
     };
-    /*mes.e = document.getElementById("right2");
-    ctx3 = mes.e.getContext("2d");*/
+    
     ctx4.font = "bold 18px serif";
     ctx4.fillStyle = "black";
     ctx4.fillText("网段1", mes.block[3].rect4.x, mes.block[3].rect4.y + 35);
@@ -76,6 +89,7 @@ mes.main = function () {
     ctx2.arc(150, 90, 80 * 18 / 20, 0, 360 * Math.PI / 180, false);
     ctx2.fill();
 }
+/**网段图上的格子 */
 mes.block = [
     {
         rect1: {                //第一个条形框里的第一个条形
@@ -134,27 +148,7 @@ mes.draw_n_rect_1 = function (n, text) {//绘制第一个水平条形的内容�
     ctx4.font = 'bold 18px Arial';
     ctx4.fillText(text, 240, 187);
 }
-mes.draw_n_rect_2 = function (n, text) {//绘制第二个水平条形的内容
-    mes.e2 = document.getElementById("right3");
-    ctx4 = mes.e2.getContext("2d");
-    ctx4.fillStyle="#ffffff";
-    ctx4.fillRect(5,206,150,28);
-    var draw_count2 = 0
-    for (; draw_count2 < n; draw_count2++) {
-        mes.drawRect(mes.block[1].rect2.x + 10 * draw_count2, mes.block[1].rect2.y, mes.block[1].rect2.w, mes.block[1].rect2.h);
-    }
-    ctx4.font = 'bold 18px Arial';
-    ctx4.fillText(text, 260, 227);
-}
-/*  function draw_n_rect_3(n,text){//绘制第三个水平条形的内容
-      var draw_count3=0
-      for(;draw_count3<n;draw_count3++)
-      {
-          drawRect(block[2].rect3.x+10*draw_count3,block[2].rect3.y,block[2].rect3.w,block[2].rect3.h);
-          ctx4.fillText(text,240,273);
-          
-      }
-  }*/
+
 mes.draw_n_rect = function (n1_1,n1_2,n2_1,n2_2) {
     mes.e2 = document.getElementById("right3");
     ctx4 = mes.e2.getContext("2d");
@@ -163,7 +157,7 @@ mes.draw_n_rect = function (n1_1,n1_2,n2_1,n2_2) {
     var i1 = n1_1;
     var i2 = n2_1;
     mes.draw_n_rect_1(0," ");
-    mes.draw_n_rect_2(0," ");
+    //mes.draw_n_rect_2(0," ");
     if(n1_2>=n1_1)
     {
         if(n1_2>0)
@@ -216,77 +210,97 @@ mes.draw_n_rect = function (n1_1,n1_2,n2_1,n2_2) {
         }
 
     }
-       /* else if(n1_2<=0)
-        {
-        var text1_temp = "0 %";
-        mes.draw_n_rect_1(0,text1_temp);
-        }*/
 
-    if(n2_1<=n2_2)
-    {
-        if(n2_1>=0)
-        {
-            var timer2 = setInterval(function () {
-            ctx4.fillStyle = "#ffffff";
-            ctx4.fillRect(260, 213, 40, 30);
-            var text2_temp = i2 + "%";
-            mes.draw_n_rect_2(3 * i2 / 20, text2_temp);
-            if (i2 >= n2_2) {
-                clearInterval(timer2);
-            }
-            i2++;
-        }, 50)
-        }
-        /*else if(n2_2<=0)
-        {
-        var text2_temp = "0 %";
-        mes.draw_n_rect_2(0,text2_temp);
-        }*/
-    }
-    else if(n2_1>n2_2)
-    {
-        if(n2_2>=0)
-        {
-        var timer2 = setInterval(function () {
-            ctx4.fillStyle = "#ffffff";
-            ctx4.fillRect(260, 213, 40, 30);
-            var text2_temp = i2 + "%";
-            mes.draw_n_rect_2(3 * i2 / 20, text2_temp);
-            if (i2 <= n2_2) {
-                clearInterval(timer2);
-            }
-            i2--;
-        }, 50);
-        }
-    }
-       /* else if(n2_2<=0)
-        {
-        var text2_temp = "0 %";
-        mes.draw_n_rect_2(0,text2_temp);
-        }*/
+
+    // if(n2_1<=n2_2)
+    // {
+    //     if(n2_1>=0)
+    //     {
+    //         var timer2 = setInterval(function () {
+    //         ctx4.fillStyle = "#ffffff";
+    //         ctx4.fillRect(260, 213, 40, 30);
+    //         var text2_temp = n2_2;
+    //         mes.draw_n_rect_2(3 * i2 / 20, text2_temp);
+    //         if (i2 >= n2_2) {
+    //             clearInterval(timer2);
+    //         }
+    //         i2++;
+    //     }, 50)
+    //     }
+    // }
+    // else if(n2_1>n2_2)
+    // {
+    //     if(n2_2>=0)
+    //     {
+    //     var timer2 = setInterval(function () {
+    //         ctx4.fillStyle = "#ffffff";
+    //         ctx4.fillRect(260, 213, 40, 30);
+    //         var text2_temp = i2 + "%";
+    //         mes.draw_n_rect_2(3 * i2 / 20, text2_temp);
+    //         if (i2 <= n2_2) {
+    //             clearInterval(timer2);
+    //         }
+    //         i2--;
+    //     }, 50);
+    //     }
+    // }
+      
 }
 /*draw_n_rect_1(n1,text1);
 draw_n_rect_2(n2,text2);*/
 //draw_n_rect(100,50);//调用内存占用、黑名单占比的函数示例,传递百分比的大小------------------
+
+mes.draw_n_rect_2 = function (n, text) {//绘制第二个水平条形的内容
+    mes.e2 = document.getElementById("right3");
+    ctx4 = mes.e2.getContext("2d");
+    ctx4.fillStyle="#ffffff";
+    ctx4.fillRect(5,206,150,28);
+    var draw_count2 = 0
+    for (; draw_count2 < n; draw_count2++) {
+        mes.drawRect(mes.block[1].rect2.x + 10 * draw_count2, mes.block[1].rect2.y, mes.block[1].rect2.w, mes.block[1].rect2.h);
+    }
+    ctx4.font = 'bold 18px Arial';
+    ctx4.fillText(text, 260, 227);
+}
 mes.set_IP = function (text) {
     mes.e2 = document.getElementById("right3");
     ctx4 = mes.e2.getContext("2d");
     ctx4.fillStyle = "#ffffff";
-    ctx4.fillRect(240, 233, 60, 30);
+
+    ctx4.fillRect(240, 210, 100, 50);
     ctx4.fillStyle = "#0b799d";
-    ctx4.fillText(text, 240, 260);//调整连接IP数的值--------------------
+    ctx4.fillText(text, 240, 227);//调整连接IP数的值--------------------
 }
 //set_IP(1024);
 
-mes.drawRect2 = function (x, y, w, h) { //绘制右侧canvas里的单个条形块
-    mes.e = document.getElementById("right2");
-    ctx3 = mes.e.getContext("2d");
-    ctx3.fillRect(x, y, w, h);
-    ctx3.lineWidth = 1;
-    ctx3.strokeStyle = "white";
-    ctx3.strokeRect(x, y, w, h);
-}
+// mes.drawRect2 = function (x, y, w, h) { //绘制右侧canvas里的单个条形块
+//     mes.e = document.getElementById("right2");
+//     ctx3 = mes.e.getContext("2d");
+//     ctx3.fillRect(x, y, w, h);
+//     ctx3.lineWidth = 1;
+//     ctx3.strokeStyle = "white";
+//     ctx3.strokeRect(x, y, w, h);
+// }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * mes.draw_n_rect_4 5 6 7 8：绘制网段图
+ */
 mes.draw_n_rect_4 = function (n) {//绘制右侧第一个竖直条形，n为单个竖直条形里面的条形的个数
     mes.e = document.getElementById("right2");
     ctx3 = mes.e.getContext("2d");
