@@ -211,39 +211,6 @@ mes.draw_n_rect = function (n1_1,n1_2,n2_1,n2_2) {
 
     }
 
-
-    // if(n2_1<=n2_2)
-    // {
-    //     if(n2_1>=0)
-    //     {
-    //         var timer2 = setInterval(function () {
-    //         ctx4.fillStyle = "#ffffff";
-    //         ctx4.fillRect(260, 213, 40, 30);
-    //         var text2_temp = n2_2;
-    //         mes.draw_n_rect_2(3 * i2 / 20, text2_temp);
-    //         if (i2 >= n2_2) {
-    //             clearInterval(timer2);
-    //         }
-    //         i2++;
-    //     }, 50)
-    //     }
-    // }
-    // else if(n2_1>n2_2)
-    // {
-    //     if(n2_2>=0)
-    //     {
-    //     var timer2 = setInterval(function () {
-    //         ctx4.fillStyle = "#ffffff";
-    //         ctx4.fillRect(260, 213, 40, 30);
-    //         var text2_temp = i2 + "%";
-    //         mes.draw_n_rect_2(3 * i2 / 20, text2_temp);
-    //         if (i2 <= n2_2) {
-    //             clearInterval(timer2);
-    //         }
-    //         i2--;
-    //     }, 50);
-    //     }
-    // }
       
 }
 /*draw_n_rect_1(n1,text1);
@@ -273,14 +240,14 @@ mes.set_IP = function (text) {
 }
 //set_IP(1024);
 
-// mes.drawRect2 = function (x, y, w, h) { //绘制右侧canvas里的单个条形块
-//     mes.e = document.getElementById("right2");
-//     ctx3 = mes.e.getContext("2d");
-//     ctx3.fillRect(x, y, w, h);
-//     ctx3.lineWidth = 1;
-//     ctx3.strokeStyle = "white";
-//     ctx3.strokeRect(x, y, w, h);
-// }
+mes.drawRect2 = function (x, y, w, h) { //绘制右侧canvas里的单个条形块
+    mes.e = document.getElementById("right2");
+    ctx3 = mes.e.getContext("2d");
+    ctx3.fillRect(x, y, w, h);
+    ctx3.lineWidth = 1;
+    ctx3.strokeStyle = "white";
+    ctx3.strokeRect(x, y, w, h);
+}
 
 
 

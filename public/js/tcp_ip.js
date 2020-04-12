@@ -77,13 +77,14 @@ tcp.sendPackage = function () {
         // 如果syn右移动没有执行完毕
         if (syn_left < 500) {
             $('#syn').show();
+            tcp.removeTip()
+            tcp.showTip("第一次握手：客户端发送连接请求SYN到服务器")
             $('#syn').css(
                 {
                     'left': '+=2px'
                 }
             );
         }
-
         else if (tcp.show_synbean) {
             tcp.show_synbean = !tcp.show_synbean;
             $('#queue div').eq(9).css({ 'visibility': 'visible' });
@@ -91,6 +92,8 @@ tcp.sendPackage = function () {
 
         else if (ack1_left > 150) {
             $('#ack1').show();
+            tcp.removeTip()
+            tcp.showTip("第二次握手：服务器接收客户端发来的SYN,将连接信息放入半连接队列，并向客户端返回SYN+ACK")
             $('#ack1').css(
                 {
                     'left': '-=2px'
@@ -100,6 +103,8 @@ tcp.sendPackage = function () {
 
         else if (ack2_left < 500) {
             $('#ack2').show();
+            tcp.removeTip()
+            tcp.showTip("第三次握手：客户端向服务器发送ACK")
             $('#ack2').css(
                 {
                     'left': '+=2px'
@@ -108,6 +113,8 @@ tcp.sendPackage = function () {
         }
 
         else if (tcp.hide_synbean) {
+            tcp.removeTip()
+            tcp.showTip("服务器收到客户端发来的ACK后，将该连接从半连接队列里面移除。至此TCP三次握手完成，连接成功建立！")
             tcp.hide_synbean = !tcp.hide_synbean;
             $('#queue div').eq(9).css({ 'visibility': 'hidden' });
             finish = true;
@@ -155,6 +162,22 @@ tcp.initEnv = function () {
     tcp.anim_handle = null;
     tcp.arrow_handle = null;
 };
+
+//提示出现
+tcp.showTip = function (tip) {
+    let tips = '<div id="tip">'+tip+'</div>';
+    $(tips).css({
+        position: 'absolute',
+        left: '25px',
+        top: '15px',
+        'font-size': '20px',
+    }).appendTo('#level0_div');
+}
+
+//提示擦除
+tcp.removeTip = function (){
+    $('#tip').remove()
+}
 
 // 只需要初始化一次的内容
 tcp.initCanvas = function () {
@@ -258,6 +281,7 @@ tcp.clear = function () {
     // 解除所有事件绑定
     $('.package').unbind().remove();
     $('.ip').remove();
+    tcp.removeTip()
     $('#start').unbind();
     $('#restart').unbind();
     tcp.initEnv();

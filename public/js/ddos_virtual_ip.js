@@ -52,6 +52,8 @@ ddos_v.main = function () {
         ddos_v.initAnimation();
         ddos_v.drawArrow1();
         $('#start').text("暂停");
+        clearInterval(enqueueFlag);
+        enqueueUser();
         ddos_v.pause = false;
         window.requestAnimationFrame(ddos_v.send_package);//重新请求动画
     });
@@ -208,8 +210,8 @@ ddos_v.IP = function () {
                 let prompt3 = '<div id="prompt3">没有回复，加入黑名单</div>';
                 $(prompt3).css({
                     position: 'absolute',
-                    left: '125px',
-                    top: '225px',
+                    left: '190px',
+                    top: '15px',
                     'font-size': '20px',
                 }).appendTo('#level0_div');
             }, 1000);
@@ -218,7 +220,7 @@ ddos_v.IP = function () {
                 // 移除信息
                 $('#prompt3').remove();
                 // 未连接队列移除三个
-                for (var i = 2; i >= 0; i--) {
+                for (var i = 5; i <= 7; i++) {
                     if ($('#queue div').eq(i).attr('class') == 'syn' && $('#queue div').eq(i).css('visibility') == 'visible') {
                         $('#queue div').eq(i).css({
                             'visibility': 'hidden'
@@ -235,8 +237,8 @@ ddos_v.IP = function () {
                 let prompt3 = '<div id="prompt3">继续攻击一段时间后...</div>';
                 $(prompt3).css({
                     position: 'absolute',
-                    left: '125px',
-                    top: '225px',
+                    left: '190px',
+                    top: '15px',
                     'font-size': '20px',
                 }).appendTo('#level0_div');
             }, 4000);
@@ -244,8 +246,8 @@ ddos_v.IP = function () {
             setTimeout(function () {
                 // 移除信息
                 $('#prompt3').remove();
-                // 未连接队列加满
-                for (var i = 9; i >= 0; i--) {
+                // // 未连接队列加满
+                for (var i = 9; i >= 5; i--) {
                     $('#queue div').eq(i).css({
                         'visibility': 'visible',
                         'background-color': '#FFD700'

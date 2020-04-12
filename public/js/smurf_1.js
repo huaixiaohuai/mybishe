@@ -99,11 +99,15 @@ smurf_1.showMessage = function () {
 smurf_1.defendAnimation=function()
 {
     $('#select_title').show();
+    // console.log(document.getElementById("option3").disabled);
     $('#options').unbind("mouseleave");
+    //document.getElementById("option3").disabled=true;
     $('#options').mouseleave(function () {
+        
         $('#queue2').hide();
         $("form input").each(function () {//循环绑定事件
             if (this.checked && smurf_1.live) {
+                
                 if (this.id == 'option1') {
                     //增加带宽的动画
                     mes.run_pointer(6,3);                
@@ -162,7 +166,10 @@ smurf_1.defendAnimation=function()
                 }
             }
         });
+        //document.getElementById("option3").disabled=false;
+        //console.log(document.getElementById("option3").disabled);
         $("#options").slideUp();
+        
     });
 }
 smurf_1.send_package = function () {

@@ -276,6 +276,8 @@ syn_r.hideShield = function () {
     ctx.clearRect(120, 190, 35, 80);
 }
 
+
+
 //需要多次初始化的内容
 syn_r.initAnimation = function () {
     // 初始化箭头
@@ -482,6 +484,7 @@ syn_r.IP = function () {
     window.requestAnimationFrame(messenger_go);
 }
 
+
 syn_r.defendAnimation=function()
 {
     $('#select_title').show();
@@ -636,4 +639,4 @@ syn_r.clear = function () {
     $('.ip').remove();
     $('.load').remove();
     syn_r.live = false;
-};
+}

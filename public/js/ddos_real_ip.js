@@ -215,8 +215,8 @@ ddos_r.IP = function () {
                 let prompt3 = '<div id="prompt3">没有回复，加入黑名单</div>';
                 $(prompt3).css({
                     position: 'absolute',
-                    left: '125px',
-                    top: '225px',
+                    left: '190px',
+                    top: '15px',
                     'font-size': '20px',
                 }).appendTo('#level0_div');
             }, 2000);

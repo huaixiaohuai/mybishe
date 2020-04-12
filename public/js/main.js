@@ -75,6 +75,17 @@ function initBandwidth() {
     ctx3.fillText("10GBps", 230, 140);
 }
 
+// function showTip(tip) {
+//     let tip = '<div id="tip">'+tip+'</div>';
+//     $(tip).css({
+//         position: 'absolute',
+//         left: '25px',
+//         top: '15px',
+//         'font-size': '20px',
+//     }).appendTo('#level0_div');
+// }
+
+
 function enqueue_back(x) {
     $('#queue div').eq(x).css({
         'visibility': 'visible',
